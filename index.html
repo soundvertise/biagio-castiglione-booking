@@ -240,7 +240,7 @@
             padding: 12px 0;
             font-size: 0.65rem;
             border-radius: 6px;
-            font-weight: 900; /* Font in grassetto */
+            font-weight: 900;
         }
 
         .times-grid {
@@ -251,7 +251,7 @@
         }
         
         .time-btn {
-            font-weight: 900; /* Font in grassetto */
+            font-weight: 900;
         }
 
         input[type="text"], textarea {
@@ -381,7 +381,6 @@
                 <h2>Disponibilità</h2>
                 <p class="subtitle">Quando preferiresti venire in studio?</p>
                 
-                <!-- SEMPRE DISPONIBILE -->
                 <div class="option-btn full-width" id="btn-always" onclick="toggleAlwaysAvailable()" style="margin-bottom: 15px;">
                     <span class="label">Sempre Disponibile</span>
                 </div>
@@ -462,7 +461,6 @@
                 data[key].push(val); 
                 el.classList.add('selected'); 
             }
-            // Rimuove lo stato "sempre disponibile" se si modifica manualmente
             document.getElementById('btn-always').classList.remove('selected');
         }
 
@@ -485,7 +483,7 @@
 
         function validateAvailability() {
             if(data.days.length === 0 || data.times.length === 0) {
-                return; // Impedisce di procedere senza alcuna selezione
+                return;
             }
             nextStep();
         }
@@ -495,17 +493,18 @@
             data.notes = document.getElementById('notes').value;
             if(!data.name) return;
 
-            let text = `*RICHIESTA TATUAGGIO - BIAGIO CASTIGLIONE*%0A%0A`;
-            text += `👤 *Nome:* ${data.name}%0A`;
-            text += `📏 *Misura:* ${data.size}%0A`;
-            text += `🎨 *Stile:* ${data.style}%0A`;
-            text += `💡 *Stato:* ${data.status}%0A`;
-            text += `📅 *Giorni:* ${data.days.join(', ')}%0A`;
-            text += `⏰ *Orari:* ${data.times.join(', ')}%0A`;
-            text += `📝 *Note:* ${data.notes || 'Nessuna'}`;
+            // Messaggio con intestazione richiesta
+            let message = `*Nuova richiesta tattoo - Biagio Castiglione*\n\n`;
+            message += `👤 *Nome:* ${data.name}\n`;
+            message += `📏 *Misura:* ${data.size}\n`;
+            message += `🎨 *Stile:* ${data.style}\n`;
+            message += `✨ *Artista:* Biagio\n`;
+            message += `📅 *Giorni:* ${data.days.join(', ')}\n`;
+            message += `⏰ *Orari:* ${data.times.join(', ')}\n`;
+            message += `📝 *Note:* ${data.notes || 'Nessuna'}`;
 
-            // Sostituisci il numero con quello corretto del cliente
-            window.open(`https://wa.me/393347280140?text=${text}`, '_blank');
+            const encodedText = encodeURIComponent(message);
+            window.open(`https://wa.me/393335442533?text=${encodedText}`, '_blank');
         }
     </script>
 </body>
